@@ -44,4 +44,13 @@ WHERE salary < (
     )
 );
 
+#6. Using CTE
+WITH SalaryRank AS (
+    SELECT salary,
+           ROW_NUMBER() OVER (ORDER BY salary DESC) AS row_num
+    FROM employees
+)
+SELECT salary
+FROM SalaryRank
+WHERE row_num = 3;
 
