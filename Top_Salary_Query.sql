@@ -54,3 +54,10 @@ SELECT salary
 FROM SalaryRank
 WHERE row_num = 3;
 
+--How do you get the nth highest salary (say 3rd)?
+SELECT Salary
+FROM (
+    SELECT Salary, DENSE_RANK() OVER (ORDER BY Salary DESC) AS rnk
+    FROM EmployeeSalary
+) AS t
+WHERE rnk = 3;
